@@ -12,6 +12,8 @@
     <None Remove="Services\Helpers\" />
     <None Remove="Services\Helpers\Constants\" />
     <None Remove="Services\Helpers\Exceptions\" />
+    <None Remove="Services\Helpers\Extensions\" />
+    <None Remove="Services\Helpers\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -19,6 +21,8 @@
     <Folder Include="Services\Helpers\" />
     <Folder Include="Services\Helpers\Constants\" />
     <Folder Include="Services\Helpers\Exceptions\" />
+    <Folder Include="Services\Helpers\Extensions\" />
+    <Folder Include="Services\Helpers\Enums\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository\Repository.csproj" />

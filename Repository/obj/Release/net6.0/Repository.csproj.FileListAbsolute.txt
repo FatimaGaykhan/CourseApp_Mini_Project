@@ -1,0 +1,15 @@
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/bin/Release/net6.0/Repository.deps.json
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/bin/Release/net6.0/Repository.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/bin/Release/net6.0/Repository.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/bin/Release/net6.0/Domain.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/bin/Release/net6.0/Domain.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.csproj.AssemblyReference.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.AssemblyInfoInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.AssemblyInfo.cs
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.csproj.CoreCompileInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.csproj.CopyComplete
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/refint/Repository.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/Repository.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Repository/obj/Release/net6.0/ref/Repository.dll

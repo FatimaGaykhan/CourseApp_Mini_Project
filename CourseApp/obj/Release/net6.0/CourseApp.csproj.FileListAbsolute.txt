@@ -13,3 +13,10 @@
 /Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.pdb
 /Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.genruntimeconfig.cache
 /Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/ref/CourseApp.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Domain.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Repository.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Service.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Service.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Domain.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/Repository.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.csproj.CopyComplete
