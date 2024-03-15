@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{2F72C186-9D6D-47B8-BC8E-FDC30BC45E61}|Default">
+  <MonoDevelop.Ide.ItemProperties.Repository FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Domain FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Service FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.CourseApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/Services/GroupService.cs">
+    <Files>
+      <File FileName="CourseApp/Program.cs" />
+      <File FileName="Domain/Common/BaseEntity.cs" Line="4" Column="17" />
+      <File FileName="Repository/Repositories/Interfaces/IBaseRepository.cs" Line="13" Column="54" />
+      <File FileName="Repository/Repositories/BaseRepository.cs" Line="8" Column="18" />
+      <File FileName="Repository/Repositories/Interfaces/IGroupRepository.cs" Line="10" Column="63" />
+      <File FileName="Repository/Repositories/Interfaces/IStudentRepository.cs" Line="10" Column="78" />
+      <File FileName="Domain/Models/Group.cs" Line="1" Column="1" />
+      <File FileName="Repository/Repositories/GroupRepository.cs" Line="9" Column="69" />
+      <File FileName="Repository/Repositories/StudentRepository.cs" Line="8" Column="76" />
+      <File FileName="Domain/Models/Student.cs" Line="1" Column="1" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="9" Column="19" />
+      <File FileName="Service/Services/GroupService.cs" Line="67" Column="83" />
+      <File FileName="Service/Services/Interfaces/IStudentService.cs" Line="15" Column="58" />
+      <File FileName="Service/Services/StudentService.cs" Line="75" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CourseApp" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

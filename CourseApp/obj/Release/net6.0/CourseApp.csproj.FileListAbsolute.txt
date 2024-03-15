@@ -1,0 +1,15 @@
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/CourseApp
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/CourseApp.deps.json
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/CourseApp.runtimeconfig.json
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/CourseApp.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/bin/Release/net6.0/CourseApp.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.csproj.AssemblyReference.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.AssemblyInfoInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.AssemblyInfo.cs
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.csproj.CoreCompileInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/refint/CourseApp.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/CourseApp.genruntimeconfig.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/CourseApp/obj/Release/net6.0/ref/CourseApp.dll
