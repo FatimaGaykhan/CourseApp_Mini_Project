@@ -1,5 +1,8 @@
-﻿using Service.Services.Helpers.Enums;
+﻿using CourseApp.Controllers;
+using Service.Services.Helpers.Enums;
 using Service.Services.Helpers.Extensions;
+
+GroupController groupController = new GroupController();
 
 GetMenues();
 
@@ -15,22 +18,22 @@ while (true)
         switch (operation)
         {
             case (int)OperationType.GroupCreate:
-                Console.WriteLine("yes");
+                groupController.Create();
                 break;
             case (int)OperationType.GroupEdit:
                 Console.WriteLine("yes");
                 break;
             case (int)OperationType.GroupDelete:
-                Console.WriteLine("yes");
+                groupController.Delete();
                 break;
             case (int)OperationType.GetGroupById:
-                Console.WriteLine("yes");
+                groupController.GetGroupById();
                 break;
             case (int)OperationType.GetAllGroups:
-                Console.WriteLine("yes");
+                groupController.GetAll();
                 break;
             case (int)OperationType.GetAllGroupsByRoom:
-                Console.WriteLine("yes");
+                groupController.GetAllGroupsByRoom();
                 break;
             case (int)OperationType.GetAllGroupsByTeacher:
                 Console.WriteLine("yes");
@@ -72,5 +75,5 @@ while (true)
 
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose One Operation: \n 1-Group Create \n 2-Group Delete \n 3-Group Edit \n 4-Get Group By Id \n 5-Get All Groups \n 6-Get All Groups By Room \n 7-Get All Groups By Teacher  \n 8-Search Group By Name  ");
+    ConsoleColor.Cyan.WriteConsole("Choose One Operation: \n 1-Group Create \n 2-Group Edit \n 3-Group Delete \n 4-Get Group By Id \n 5-Get All Groups \n 6-Get All Groups By Room \n 7-Get All Groups By Teacher  \n 8-Search Group By Name  ");
 }
