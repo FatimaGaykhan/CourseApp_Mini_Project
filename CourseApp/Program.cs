@@ -36,7 +36,7 @@ while (true)
                 groupController.GetAllGroupsByRoom();
                 break;
             case (int)OperationType.GetAllGroupsByTeacher:
-                Console.WriteLine("yes");
+                groupController.GetAllGroupsByTeacher();
                 break;
             case (int)OperationType.SearchGroupByName:
                 Console.WriteLine("yes");

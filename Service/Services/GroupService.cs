@@ -46,7 +46,9 @@ namespace Service.Services
 
         public List<Group> GetAllGroupsByRoom(string room)
         {
-            return _groupRepo.GetAllWithExpression(m => m.Room == room.Trim());
+            var response= _groupRepo.GetAllWithExpression(m => m.Room == room.Trim());
+            if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+            return response;
         }
 
         public List<Group> GetAllGroupsByTeacher(string teacherName)

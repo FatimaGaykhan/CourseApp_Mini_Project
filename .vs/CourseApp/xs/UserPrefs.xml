@@ -8,24 +8,27 @@
   <MonoDevelop.Ide.ItemProperties.CourseApp PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="CourseApp/Controllers/GroupController.cs">
     <Files>
-      <File FileName="CourseApp/Program.cs" Line="30" Column="48" />
+      <File FileName="CourseApp/Program.cs" Line="39" Column="57" />
       <File FileName="Domain/Common/BaseEntity.cs" />
       <File FileName="Repository/Repositories/Interfaces/IBaseRepository.cs" />
-      <File FileName="Repository/Repositories/BaseRepository.cs" Line="37" Column="73" />
-      <File FileName="Repository/Repositories/Interfaces/IGroupRepository.cs" Line="1" Column="1" />
+      <File FileName="Repository/Repositories/BaseRepository.cs" />
+      <File FileName="Repository/Repositories/Interfaces/IGroupRepository.cs" />
       <File FileName="Repository/Repositories/Interfaces/IStudentRepository.cs" />
-      <File FileName="Domain/Models/Group.cs" Line="1" Column="1" />
+      <File FileName="Domain/Models/Group.cs" />
       <File FileName="Repository/Repositories/GroupRepository.cs" />
       <File FileName="Repository/Repositories/StudentRepository.cs" />
       <File FileName="Domain/Models/Student.cs" />
-      <File FileName="Service/Services/Interfaces/IGroupService.cs" Line="1" Column="1" />
-      <File FileName="Service/Services/GroupService.cs" Line="65" Column="28" />
-      <File FileName="Service/Services/Interfaces/IStudentService.cs" Line="15" Column="58" />
+      <File FileName="Service/Services/Interfaces/IGroupService.cs" />
+      <File FileName="Service/Services/GroupService.cs" />
+      <File FileName="Service/Services/Interfaces/IStudentService.cs" />
       <File FileName="Service/Services/StudentService.cs" />
       <File FileName="Service/Services/Helpers/Extensions/ConsoleExtension.cs" />
-      <File FileName="CourseApp/Controllers/GroupController.cs" Line="127" Column="13" />
-      <File FileName="CourseApp/Controllers/StudentController.cs" Line="1" Column="1" />
-      <File FileName="Service/Services/Helpers/Enums/OperationType.cs" Line="6" Column="16" />
+      <File FileName="CourseApp/Controllers/GroupController.cs" Line="169" Column="38" />
+      <File FileName="CourseApp/Controllers/StudentController.cs" />
+      <File FileName="Service/Services/Helpers/Enums/OperationType.cs" />
+      <File FileName="Service/Services/Helpers/Exceptions/NotFoundException.cs" />
+      <File FileName="Service/Services/Helpers/Exceptions/EmptyException.cs" />
+      <File FileName="Service/Services/Helpers/Constants/ResponseMessages.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -47,7 +50,9 @@
             <Node name="Service" expanded="True">
               <Node name="Services" expanded="True">
                 <Node name="Helpers" expanded="True">
+                  <Node name="Constants" expanded="True" />
                   <Node name="Enums" expanded="True" />
+                  <Node name="Exceptions" expanded="True" />
                   <Node name="Extensions" expanded="True" />
                 </Node>
                 <Node name="Interfaces" expanded="True" />

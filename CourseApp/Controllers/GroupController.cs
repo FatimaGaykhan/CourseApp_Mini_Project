@@ -55,18 +55,28 @@ namespace CourseApp.Controllers
 
 		public void GetAll()
 		{
-			var response = _groupservice.GetAll();
-			foreach (var item in response)
+			try
 			{
-                string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
-                Console.WriteLine(data);
+                var response = _groupservice.GetAll();
+                if (response.Count == 0) throw new EmptyException(ResponseMessages.NotAddedYet);
+                foreach (var item in response)
+                {
+                    string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
+                    Console.WriteLine(data);
+                }
             }
+			catch (Exception ex)
+			{
+				ConsoleColor.Red.WriteConsole(ex.Message);
+			}
+		
 		}
 
 		public void Delete()
 		{
 			ConsoleColor.Cyan.WriteConsole("Add Group Id:");
-			Id: string idStr = Console.ReadLine();
+		    Id: string str = Console.ReadLine();
+			string idStr = str.Trim().ToLower();
 			int id;
 			bool isCorretIdFormat = int.TryParse(idStr, out id);
 			if (isCorretIdFormat)
@@ -99,28 +109,33 @@ namespace CourseApp.Controllers
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto RoomName;
-            }
-            try
-			{
-				var response=_groupservice.GetAllGroupsByRoom(roomName);
-				if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
-				foreach (var item in response)
-				{
-                    string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
-					Console.WriteLine(data);
-                }
-
-            }
-			catch (Exception ex)
-			{
-				ConsoleColor.Red.WriteConsole(ex.Message);
 			}
+			else
+			{
+                try
+                {
+                    var response = _groupservice.GetAllGroupsByRoom(roomName);
+                    if (response.Count==0) throw new NotFoundException(ResponseMessages.DataNotFound);
+                    foreach (var item in response)
+                    {
+                        string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
+                        Console.WriteLine(data);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                }
+            }
+            
 		}
 
 		public void GetGroupById()
 		{
 			ConsoleColor.Green.WriteConsole("Add Id:");
-		    Id: string idStr = Console.ReadLine();
+		    Id: string str = Console.ReadLine();
+			string idStr = str.Trim();
 			if (string.IsNullOrWhiteSpace(idStr))
 			{
 				ConsoleColor.Red.WriteConsole("Input can't be empty");
@@ -135,16 +150,59 @@ namespace CourseApp.Controllers
                     var response = _groupservice.GetById(id);
 					if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
                     string data = $"Id: {response.Id}, Group name : {response.Name}, Group Teacher : {response.TeacherName}, Group Room Name : {response.Room}";
-                    Console.WriteLine(data);  
-				}
+                    Console.WriteLine(data);
+                }
 				catch (Exception ex)
 				{
 					ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Id;
+                   
                 }
 			}
+			else
+			{
+                ConsoleColor.Red.WriteConsole("Id format is wrong, please add again");
+                goto Id;
+            }
 			
 		}
-	}
+
+		public void GetAllGroupsByTeacher()
+		{
+			Console.WriteLine("Add teacher name:");
+			TeacherName: string str = Console.ReadLine();
+			string teacherName = str.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(teacherName))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto TeacherName;
+            }
+
+            bool isNumeric = teacherName.Any(char.IsDigit);
+			if (!isNumeric)
+			{
+                try
+                {
+                    var response = _groupservice.GetAllGroupsByTeacher(teacherName);
+                    if (response.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
+                    foreach (var item in response)
+                    {
+                        string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
+                        Console.WriteLine(data);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                }
+
+			}
+			else
+			{
+                ConsoleColor.Red.WriteConsole("Teacher name format is wrong, please add again");
+                goto TeacherName;
+            }
+		}
+
+    }
 }
 

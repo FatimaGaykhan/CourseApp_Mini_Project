@@ -1,0 +1,17 @@
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Service.deps.json
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Service.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Service.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Domain.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Repository.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Repository.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/bin/Debug/net6.0/Domain.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.csproj.AssemblyReference.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.AssemblyInfoInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.AssemblyInfo.cs
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.csproj.CoreCompileInputs.cache
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.csproj.CopyComplete
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/refint/Service.dll
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/Service.pdb
+/Users/fatimagaykhanova/Desktop/CourseApp/Service/obj/Debug/net6.0/ref/Service.dll
