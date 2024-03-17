@@ -11,6 +11,14 @@ namespace Service.Services.Helpers.Enums
 		GetAllGroupsByRoom,
 		GetAllGroupsByTeacher,
 		SearchGroupByName,
-	}
+		StudentCreate,
+		StudentEdit,
+        StudentDelete,
+        GetStudentById,
+		GetAllStudents,
+        GetAllStudentsByGroupId,
+        GetStudentsByAge,
+        SearchByNameOrSurname,
+    }
 }
 

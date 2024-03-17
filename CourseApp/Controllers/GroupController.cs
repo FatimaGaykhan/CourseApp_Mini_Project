@@ -19,21 +19,29 @@ namespace CourseApp.Controllers
 
 		public void Create()
 		{
-			ConsoleColor.Cyan.WriteConsole("Add Name:");
-			Name: string name = Console.ReadLine();
-			if (string.IsNullOrWhiteSpace(name.Trim().ToLower()))
-			{
-				ConsoleColor.Red.WriteConsole("Input can't be empty");
-				goto Name;
-			}
+			ConsoleColor.Cyan.WriteConsole("Add Group Name:");
+		    Name: string str1 = Console.ReadLine();
+			string name = str1.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;
+            }
 			ConsoleColor.Cyan.WriteConsole("Add Teacher name:");
-			TeacherName: string teacherName = Console.ReadLine();
-			if (string.IsNullOrWhiteSpace(teacherName.Trim().ToLower()))
+		    TeacherName: string str2 = Console.ReadLine();
+			string teacherName = str2.Trim().ToLower();
+			if (string.IsNullOrWhiteSpace(teacherName))
 			{
-				ConsoleColor.Red.WriteConsole("Input can't be empty");
-				goto TeacherName;
+				ConsoleColor.Red.WriteConsole("Input can't be empty.");
+				goto TeacherName;	
 			}
-			ConsoleColor.Cyan.WriteConsole("Add Room:");
+            bool isNumeric = teacherName.Any(char.IsDigit);
+            if (isNumeric)
+            {
+				ConsoleColor.Red.WriteConsole("Teacher name format is wrong.Please add again");
+				goto TeacherName;
+            }
+            ConsoleColor.Cyan.WriteConsole("Add Room:");
 			Room: string room = Console.ReadLine();
 			if (string.IsNullOrWhiteSpace(room.Trim().ToLower()))
 			{
@@ -52,6 +60,74 @@ namespace CourseApp.Controllers
 				goto Name;
 			}
 		}
+		public void Edit()
+		{
+			ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
+			Id: string strId = Console.ReadLine();
+			if (string.IsNullOrWhiteSpace(strId))
+			{
+				ConsoleColor.Red.WriteConsole("Input can't be empty");
+			}
+			int id;
+            bool isCorretIdFormat = int.TryParse(strId, out id);
+            if (isCorretIdFormat)
+            {
+                try
+                {
+                    var response = _groupservice.GetById(id);
+                    if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+
+                    ConsoleColor.Cyan.WriteConsole("Type the group name:");
+                    string str1 = Console.ReadLine();
+                    string name = str1.Trim().ToLower();
+                    ConsoleColor.Cyan.WriteConsole("Type the teacher name:");
+                    TeacherName: string str2 = Console.ReadLine();
+                    string teacherName = str2.Trim().ToLower();
+                    bool isNumeric = teacherName.Any(char.IsDigit);
+                    if (isNumeric)
+                    {
+                        ConsoleColor.Red.WriteConsole("Teacher name format is wrong please add again");
+                        goto TeacherName;
+                    }
+                    ConsoleColor.Cyan.WriteConsole("Type the room name:");
+                    string str3 = Console.ReadLine();
+                    string roomName = str3.Trim().ToLower();
+                    if (name == "")
+                    {
+                        response.Name = response.Name;
+
+                    }
+                    if (teacherName == "")
+                    {
+                        response.TeacherName = response.TeacherName;
+                    }
+                    if (roomName == "")
+                    {
+                        response.Room = response.Room;
+                    }
+                    else
+                    {
+                        response.Name = name;
+                        response.TeacherName = teacherName;
+                        response.Room = roomName;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                }
+			}
+			else
+			{
+				ConsoleColor.Red.WriteConsole("Id format is wrong please add again");
+				goto Id;
+			}
+
+        
+
+
+        }
 
 		public void GetAll()
 		{
@@ -133,7 +209,7 @@ namespace CourseApp.Controllers
 
 		public void GetGroupById()
 		{
-			ConsoleColor.Green.WriteConsole("Add Id:");
+			ConsoleColor.Cyan.WriteConsole("Add Id:");
 		    Id: string str = Console.ReadLine();
 			string idStr = str.Trim();
 			if (string.IsNullOrWhiteSpace(idStr))
@@ -168,7 +244,7 @@ namespace CourseApp.Controllers
 
 		public void GetAllGroupsByTeacher()
 		{
-			Console.WriteLine("Add teacher name:");
+			ConsoleColor.Cyan.WriteConsole("Add teacher name:");
 			TeacherName: string str = Console.ReadLine();
 			string teacherName = str.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(teacherName))
@@ -202,6 +278,37 @@ namespace CourseApp.Controllers
                 goto TeacherName;
             }
 		}
+
+		public void SearchGroupByName()
+		{
+			ConsoleColor.Cyan.WriteConsole("Add group name:");
+			GroupName: string str = Console.ReadLine();
+			string groupName = str.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(groupName))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto GroupName;
+			}
+			else
+			{
+                try
+                {
+                    var response = _groupservice.SearchGroupByName(groupName);
+                    if (response.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
+                    foreach (var item in response)
+                    {
+                        string data = $"Id: {item.Id}, Group name : {item.Name}, Group Teacher : {item.TeacherName}, Group Room Name : {item.Room}";
+                        Console.WriteLine(data);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                }
+            }
+
+
+        }
 
     }
 }

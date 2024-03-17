@@ -3,6 +3,7 @@ using Service.Services.Helpers.Enums;
 using Service.Services.Helpers.Extensions;
 
 GroupController groupController = new GroupController();
+StudentController studentController = new StudentController();
 
 GetMenues();
 
@@ -21,7 +22,7 @@ while (true)
                 groupController.Create();
                 break;
             case (int)OperationType.GroupEdit:
-                Console.WriteLine("yes");
+                groupController.Edit();
                 break;
             case (int)OperationType.GroupDelete:
                 groupController.Delete();
@@ -39,6 +40,30 @@ while (true)
                 groupController.GetAllGroupsByTeacher();
                 break;
             case (int)OperationType.SearchGroupByName:
+                groupController.SearchGroupByName();
+                break;
+            case (int)OperationType.StudentCreate:
+                studentController.Create();
+                break;
+            case (int)OperationType.StudentEdit:
+                Console.WriteLine("yes");
+                break;
+            case (int)OperationType.StudentDelete:
+                Console.WriteLine("yes");
+                break;
+            case (int)OperationType.GetStudentById:
+                Console.WriteLine("yes");
+                break;
+            case (int)OperationType.GetAllStudents:
+                studentController.GetAll();
+                break;
+            case (int)OperationType.GetAllStudentsByGroupId:
+                Console.WriteLine("yes");
+                break;
+            case (int)OperationType.GetStudentsByAge:
+                Console.WriteLine("yes");
+                break;
+            case (int)OperationType.SearchByNameOrSurname:
                 Console.WriteLine("yes");
                 break;
             default:
@@ -75,5 +100,5 @@ while (true)
 
 static void GetMenues()
 {
-    ConsoleColor.Cyan.WriteConsole("Choose One Operation: \n 1-Group Create \n 2-Group Edit \n 3-Group Delete \n 4-Get Group By Id \n 5-Get All Groups \n 6-Get All Groups By Room \n 7-Get All Groups By Teacher  \n 8-Search Group By Name  ");
+    ConsoleColor.Cyan.WriteConsole("Choose One Operation: \n 1-Group Create \n 2-Group Edit \n 3-Group Delete \n 4-Get Group By Id \n 5-Get All Groups \n 6-Get All Groups By Room \n 7-Get All Groups By Teacher  \n 8-Search Group By Name \n 9-Student Create \n 10-Student Edit \n 11-Student Delete \n 12-Get Student By Id \n 13-Get All Students \n 14-Get All Studens By Group Id \n 15-Get All Students By Age  \n 16-Search By Name Or Surname ");
 }

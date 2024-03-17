@@ -19,7 +19,8 @@ namespace Repository.Repositories
 
         public void Edit(T entity)
         {
-            throw new NotImplementedException();
+            T existEntity = GetById(entity.Id);
+            existEntity = entity;
         }
 
         public List<T> GetAll()

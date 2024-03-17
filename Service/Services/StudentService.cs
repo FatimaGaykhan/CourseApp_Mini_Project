@@ -35,7 +35,22 @@ namespace Service.Services
 
         public void Edit(Student data)
         {
-            throw new NotImplementedException();
+            if (data is null) throw new ArgumentNullException();
+            var response = _studentRepo.GetAllWithExpression(m => m.Id == data.Id);
+            if (response != null)
+            {
+                foreach (var item in response)
+                {
+                    item.Name = data.Name;
+                    item.Surname = data.Surname;
+                    item.Age = data.Age;
+                    item.Group.Name = data.Group.Name;
+                }
+            }
+            else
+            {
+                throw new NotFoundException(ResponseMessages.DataNotFound);
+            }
         }
 
         public List<Student> GetAll()

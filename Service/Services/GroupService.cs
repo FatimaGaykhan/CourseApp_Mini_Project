@@ -36,7 +36,22 @@ namespace Service.Services
 
         public void Edit(Group data)
         {
-            throw new NotImplementedException();
+            if (data is null) throw new ArgumentNullException();
+            var response = _groupRepo.GetAllWithExpression(m => m.Id == data.Id);
+            if(response != null)
+            {
+                foreach (var item in response)
+                {
+                    item.Name = data.Name;
+                    item.Room = data.Room;
+                    item.TeacherName = data.TeacherName;
+                }
+            }
+            else
+            {
+                throw new NotFoundException(ResponseMessages.DataNotFound);
+            }
+            
         }
 
         public List<Group> GetAll()
@@ -46,14 +61,14 @@ namespace Service.Services
 
         public List<Group> GetAllGroupsByRoom(string room)
         {
-            var response= _groupRepo.GetAllWithExpression(m => m.Room == room.Trim());
+            var response= _groupRepo.GetAllWithExpression(m => m.Room == room.Trim()||m.Room.Contains(room.Trim()));
             if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
             return response;
         }
 
         public List<Group> GetAllGroupsByTeacher(string teacherName)
         {
-            return _groupRepo.GetAllWithExpression(m => m.TeacherName == teacherName.Trim());
+            return _groupRepo.GetAllWithExpression(m => m.TeacherName == teacherName.Trim()||m.TeacherName.Contains(teacherName.Trim()));
         }
 
         public Group GetById(int? id)
@@ -66,7 +81,7 @@ namespace Service.Services
 
         public List<Group> SearchGroupByName(string groupName)
         {
-            return _groupRepo.GetAllWithExpression(m => m.Name == groupName.Trim());
+            return _groupRepo.GetAllWithExpression(m => m.Name == groupName.Trim()||m.Name.Contains(groupName.Trim()));
         }
     }
 }
