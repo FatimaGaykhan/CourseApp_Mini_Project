@@ -27,8 +27,22 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto Name;
             }
-			ConsoleColor.Cyan.WriteConsole("Add Teacher name:");
+
+            List<Group> response = _groupservice.GetAll();
+
+            foreach (Group item in response)
+            {
+                if (item.Name.ToLower() == name)
+                {
+                    ConsoleColor.Red.WriteConsole("Group already exists.Please add again");
+					goto Name;
+                }
+            }
+
+
+            ConsoleColor.Cyan.WriteConsole("Add Teacher name:");
 		    TeacherName: string str2 = Console.ReadLine();
+
 			string teacherName = str2.Trim().ToLower();
 			if (string.IsNullOrWhiteSpace(teacherName))
 			{
@@ -49,6 +63,8 @@ namespace CourseApp.Controllers
 				goto Room;
 			}
 
+			
+
 			try
 			{
 				_groupservice.Create(new Group { Name = name.Trim().ToLower(), TeacherName = teacherName.Trim().ToLower(), Room = room.Trim().ToLower() });
@@ -60,13 +76,15 @@ namespace CourseApp.Controllers
 				goto Name;
 			}
 		}
+
 		public void Edit()
 		{
 			ConsoleColor.Cyan.WriteConsole("Type the Id of the data you want to change");
 			Id: string strId = Console.ReadLine();
 			if (string.IsNullOrWhiteSpace(strId))
 			{
-				ConsoleColor.Red.WriteConsole("Input can't be empty");
+				ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again.");
+                goto Id;
 			}
 			int id;
             bool isCorretIdFormat = int.TryParse(strId, out id);
@@ -74,12 +92,28 @@ namespace CourseApp.Controllers
             {
                 try
                 {
-                    var response = _groupservice.GetById(id);
+                    Group response = _groupservice.GetById(id);
                     if (response is null) throw new NotFoundException(ResponseMessages.DataNotFound);
 
                     ConsoleColor.Cyan.WriteConsole("Type the group name:");
-                    string str1 = Console.ReadLine();
+                    Name: string str1 = Console.ReadLine();
                     string name = str1.Trim().ToLower();
+                    if (response.Name==name)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto Name;
+                    }
+                    if (name == "")
+                    {
+                        response.Name = response.Name;
+
+                    }
+                    else
+                    {
+                        response.Name = name;
+                    }
+
+
                     ConsoleColor.Cyan.WriteConsole("Type the teacher name:");
                     TeacherName: string str2 = Console.ReadLine();
                     string teacherName = str2.Trim().ToLower();
@@ -89,17 +123,28 @@ namespace CourseApp.Controllers
                         ConsoleColor.Red.WriteConsole("Teacher name format is wrong please add again");
                         goto TeacherName;
                     }
-                    ConsoleColor.Cyan.WriteConsole("Type the room name:");
-                    string str3 = Console.ReadLine();
-                    string roomName = str3.Trim().ToLower();
-                    if (name == "")
+                    if (response.TeacherName == teacherName)
                     {
-                        response.Name = response.Name;
-
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto TeacherName;
                     }
                     if (teacherName == "")
                     {
                         response.TeacherName = response.TeacherName;
+                    }
+                    else
+                    {
+                        response.TeacherName = teacherName;
+                    }
+
+
+                    ConsoleColor.Cyan.WriteConsole("Type the room name:");
+                    RoomName: string str3 = Console.ReadLine();
+                    string roomName = str3.Trim().ToLower();
+                    if (response.Room == roomName)
+                    {
+                        ConsoleColor.Red.WriteConsole("Data already exists.Please add again");
+                        goto RoomName;
                     }
                     if (roomName == "")
                     {
@@ -107,11 +152,10 @@ namespace CourseApp.Controllers
                     }
                     else
                     {
-                        response.Name = name;
-                        response.TeacherName = teacherName;
                         response.Room = roomName;
                     }
-
+                    
+                  
                 }
                 catch (Exception ex)
                 {
@@ -153,6 +197,11 @@ namespace CourseApp.Controllers
 			ConsoleColor.Cyan.WriteConsole("Add Group Id:");
 		    Id: string str = Console.ReadLine();
 			string idStr = str.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(idStr))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
+                goto Id;
+            }
 			int id;
 			bool isCorretIdFormat = int.TryParse(idStr, out id);
 			if (isCorretIdFormat)
@@ -165,7 +214,7 @@ namespace CourseApp.Controllers
 				catch (Exception ex)
 				{
 					ConsoleColor.Red.WriteConsole(ex.Message);
-					goto Id;
+					
 				}
 			}
 			else

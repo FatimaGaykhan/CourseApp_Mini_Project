@@ -46,25 +46,25 @@ while (true)
                 studentController.Create();
                 break;
             case (int)OperationType.StudentEdit:
-                Console.WriteLine("yes");
+                studentController.Edit();
                 break;
             case (int)OperationType.StudentDelete:
-                Console.WriteLine("yes");
+                studentController.Delete();
                 break;
             case (int)OperationType.GetStudentById:
-                Console.WriteLine("yes");
+                studentController.GetStudentById();
                 break;
             case (int)OperationType.GetAllStudents:
                 studentController.GetAll();
                 break;
             case (int)OperationType.GetAllStudentsByGroupId:
-                Console.WriteLine("yes");
+                studentController.GetAllStudentsByGroupId();
                 break;
             case (int)OperationType.GetStudentsByAge:
-                Console.WriteLine("yes");
+                studentController.GetStudentsByAge();
                 break;
             case (int)OperationType.SearchByNameOrSurname:
-                Console.WriteLine("yes");
+                studentController.SearchByNameOrSurname();
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Operation is wrong, please choose again");
