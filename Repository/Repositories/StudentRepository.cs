@@ -7,7 +7,10 @@ namespace Repository.Repositories
 {
     public class StudentRepository : BaseRepository<Student>, IStudentRepository
     {
-       
+       public void DeleteAll(int? id)
+        {
+            AppDbContext<Student>.datas.RemoveAll(m => m.Group.Id == id);
+        }
     }
 }
 

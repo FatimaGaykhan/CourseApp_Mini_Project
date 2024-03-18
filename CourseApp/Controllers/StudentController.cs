@@ -28,19 +28,14 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
                 goto Name;
             }
-			bool isNumericByName = name.Any(char.IsDigit);
-            bool isCorrectFormatByName = name.Any(char.IsSymbol);
+            bool isCorrectFormatByName = name.All(char.IsLetter);
 
-            if (isCorrectFormatByName)
+            if (!isCorrectFormatByName)
             {
                 ConsoleColor.Red.WriteConsole("Name format is wrong.Please Add again");
                 goto Name;
             }
-			if (isNumericByName)
-			{
-                ConsoleColor.Red.WriteConsole("Name format is wrong.Please Add again");
-                goto Name;
-            }
+          
 
             ConsoleColor.Cyan.WriteConsole("Add student surname:");
             Surname: string insertedSurname = Console.ReadLine();
@@ -50,19 +45,15 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
                 goto Surname;
             }
-            bool isNumericBySurname = surname.Any(char.IsDigit);
-            bool isCorrectFormatBySurname = surname.Any(char.IsSymbol);
+            //bool isNumericBySurname = surname.Any(char.IsDigit);
+            bool isCorrectFormatBySurname = surname.All(char.IsLetter);
 
-            if (isCorrectFormatBySurname)
+            if (!isCorrectFormatBySurname)
             {
                 ConsoleColor.Red.WriteConsole("Surname format is wrong.Please Add again");
                 goto Surname;
             }
-			if (isNumericBySurname)
-			{
-                ConsoleColor.Red.WriteConsole("Surname format is wrong.Please Add again");
-				goto Surname;
-            }
+           
 
             ConsoleColor.Cyan.WriteConsole("Add student age:");
 			Age: string insertedAge = Console.ReadLine();
@@ -73,21 +64,21 @@ namespace CourseApp.Controllers
                 goto Age;
             }
             bool strAgeFormat = ageStr.Any(char.IsLetter);
+            bool isCorrectAgeFormatBySymbol = ageStr.All(char.IsDigit);
 			if (strAgeFormat)
 			{
 				ConsoleColor.Red.WriteConsole("Age format is wrong.Please Add again");
 				goto Age;
 			}
-            int age;
-            bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
-            bool isCorrectFormatByAgeForSymbol = ageStr.Any(char.IsSymbol);
-
-
-            if (isCorrectFormatByAgeForSymbol)
+            if (!isCorrectAgeFormatBySymbol)
             {
                 ConsoleColor.Red.WriteConsole("Age format is wrong.Please Add again");
                 goto Age;
             }
+
+            int age;
+            bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
+
             if (age < 15 || age > 50)
             {
                 ConsoleColor.Red.WriteConsole("age cannot be less than 15 or more than 50");
@@ -110,9 +101,9 @@ namespace CourseApp.Controllers
                 goto Id;
             }
             bool idFormat= idStr.Any(char.IsLetter);
-            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
+            bool isCorrectIdFormatBySymbol = idStr.All(char.IsDigit);
 
-            if (isCorrectIdFormatBySymbol)
+            if (!isCorrectIdFormatBySymbol)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please Add again");
                 goto Id;
@@ -146,6 +137,7 @@ namespace CourseApp.Controllers
             catch (Exception ex)
             {
                 ConsoleColor.Red.WriteConsole(ex.Message);
+                goto Id;
                 
             }
 
@@ -161,7 +153,7 @@ namespace CourseApp.Controllers
             }
             Id: string insertedStudentId = Console.ReadLine();
             string strId = insertedStudentId.Trim();
-            if (string.IsNullOrWhiteSpace(insertedStudentId))
+            if (string.IsNullOrWhiteSpace(strId))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
                 goto Id;
@@ -323,11 +315,7 @@ namespace CourseApp.Controllers
                         ConsoleColor.Red.WriteConsole("Group Id format is wrong .Please add again");
                         goto GroupId;
                     }
-                    if (groupId == 0 || groupId < 0)
-                    {
-                        ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
-                        goto GroupId;
-                    }
+                  
 
                     if (isCorrectFormatGroupId)
                     {
@@ -336,6 +324,7 @@ namespace CourseApp.Controllers
                             ConsoleColor.Red.WriteConsole("This student already is in this group.Add again");
                             goto GroupId;
                         }
+
                         else if (newGroupId == "")
                         {
                             student.Group.Id = student.Group.Id;
@@ -344,20 +333,16 @@ namespace CourseApp.Controllers
                         {
                             student.Group = groups.Find(group=>group.Id==groupId);
                         }
-                    }
-                    else
-                    {
-                        ConsoleColor.Red.WriteConsole("Group's id format is wrong.Please add again.");
-                        goto GroupId;
-                    }
 
-
+                        
+                    }
              
                 }
                 catch (Exception ex)
                 {
                     ConsoleColor.Red.WriteConsole(ex.Message);
                 }
+                ConsoleColor.Green.WriteConsole("Data edited seccessfully");
 
             }
             else
@@ -387,7 +372,12 @@ namespace CourseApp.Controllers
 
         public void Delete()
         {
-            ConsoleColor.Cyan.WriteConsole("Add id want to delete:");
+            ConsoleColor.Cyan.WriteConsole("Choose id want to delete:");
+            List<Student> students = _studentService.GetAll();
+            foreach (var student in students)
+            {
+                Console.WriteLine($"Student id:{student.Id}, Student name:{student.Name}, Student surname:{student.Surname}, Student age:{student.Age}, Student group id:{student.Group.Id}, Student group name:{student.Group.Name}");
+            }
             Id: string insertedId = Console.ReadLine();
             string idStr = insertedId.Trim();
             if (string.IsNullOrWhiteSpace(idStr))
@@ -397,19 +387,7 @@ namespace CourseApp.Controllers
             }
             int id;
             bool IsCorrectIdFormat = int.TryParse(idStr, out id);
-            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
-
-
-            if (isCorrectIdFormatBySymbol)
-            {
-                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                goto Id;
-            }
-            if (id == 0 || id < 0)
-            {
-                ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
-                goto Id;
-            }
+          
             if (IsCorrectIdFormat)
             {
                 try
@@ -447,12 +425,7 @@ namespace CourseApp.Controllers
             }
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
-            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
-            if (isCorrectIdFormatBySymbol)
-            {
-                ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
-                goto Id;
-            }
+          
             if (isCorrectIdFormat)
             {
                 try
@@ -495,12 +468,7 @@ namespace CourseApp.Controllers
             }
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
-            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
-            if (isCorrectIdFormatBySymbol)
-            {
-                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
-                goto Id;
-            }
+           
             if (isCorrectIdFormat)
             {
                 try
@@ -537,16 +505,16 @@ namespace CourseApp.Controllers
 
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
-            bool isCorrectAgeFormatBySymbol = ageStr.Any(char.IsSymbol);
-            if (isCorrectAgeFormatBySymbol)
+            bool isCorrectFormatAgeBySymbol = ageStr.All(char.IsDigit);
+            if (!isCorrectFormatAgeBySymbol)
             {
-                ConsoleColor.Red.WriteConsole("Age format is wrong . Please add again");
+                ConsoleColor.Red.WriteConsole("Age format is wrong.Please add again");
                 goto Age;
             }
-
+          
             if (age < 15 || age > 50)
             {
-                ConsoleColor.Red.WriteConsole("Age cannot be less than 15 or more than 50");
+                ConsoleColor.Red.WriteConsole("Age cannot be less than 15 or more than 50.Please add again");
                 goto Age;
             }
 
@@ -585,30 +553,20 @@ namespace CourseApp.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
                 goto Text;
             }
-            
-            bool isNumericText = searchText.Any(char.IsDigit);
-            
-            if (!isNumericText)
+
+            try
             {
-                try
+                List<Student> students = _studentService.SearchByNameOrSurname(searchText);
+                if (students.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
+                foreach (var student in students)
                 {
-                    List<Student> students = _studentService.SearchByNameOrSurname(searchText);
-                    if (students.Count == 0) throw new NotFoundException(ResponseMessages.DataNotFound);
-                    foreach (var student in students)
-                    {
-                        string data = $"Id: {student.Id}, Student name : {student.Name}, Student Surname : {student.Surname}, Student Age : {student.Age}, Student Group Name: {student.Group.Name}";
-                        Console.WriteLine(data);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    string data = $"Id: {student.Id}, Student name : {student.Name}, Student Surname : {student.Surname}, Student Age : {student.Age}, Student Group Name: {student.Group.Name}";
+                    Console.WriteLine(data);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole("Text format is wrong please add again");
-                goto Text;
+                ConsoleColor.Red.WriteConsole(ex.Message);
             }
 
         }

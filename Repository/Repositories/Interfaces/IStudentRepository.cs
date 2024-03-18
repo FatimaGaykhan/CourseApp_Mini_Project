@@ -5,7 +5,7 @@ namespace Repository.Repositories.Interfaces
 {
 	public interface IStudentRepository:IBaseRepository<Student>
 	{
-
+		public void DeleteAll(int? id);
     }
 }
 

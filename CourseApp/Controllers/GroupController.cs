@@ -12,9 +12,11 @@ namespace CourseApp.Controllers
 	public class GroupController
 	{
 		private readonly IGroupService _groupservice;
+        private readonly IStudentService _studentService;
 		public GroupController()
 		{
 			_groupservice = new GroupService();
+            _studentService = new StudentService();
 		}
 
 		public void Create()
@@ -49,13 +51,13 @@ namespace CourseApp.Controllers
 				goto TeacherName;	
 			}
             bool isNumeric = teacherName.Any(char.IsDigit);
-            bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
+            bool isCorrectFormatByTeacherName = teacherName.All(char.IsLetter);
             if (isNumeric)
             {
 				ConsoleColor.Red.WriteConsole("Teacher name format is wrong.Please add again");
 				goto TeacherName;
             }
-            if (isCorrectFormatByTeacherName)
+            if (!isCorrectFormatByTeacherName)
             {
                 ConsoleColor.Red.WriteConsole("Teacher name format is wrong.Please add again");
                 goto TeacherName;
@@ -94,13 +96,13 @@ namespace CourseApp.Controllers
 			}
 			int id;
             bool isCorrectIdFormat = int.TryParse(strId, out id);
-            bool isCorrectIdFormatForSymbol = strId.Any(char.IsSymbol);
+            bool isCorrectIdFormatForSymbol = strId.All(char.IsDigit);
             if (id == 0 || id < 0)
             {
                 ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
                 goto Id;
             }
-            if (isCorrectIdFormatForSymbol)
+            if (!isCorrectIdFormatForSymbol)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                 goto Id;
@@ -135,13 +137,13 @@ namespace CourseApp.Controllers
                     TeacherName: string insertedTeacherName = Console.ReadLine();
                     string teacherName = insertedTeacherName.Trim().ToLower();
                     bool isNumeric = teacherName.Any(char.IsDigit);
-                    bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
+                    bool isCorrectFormatByTeacherName = teacherName.All(char.IsLetter);
                     if (isNumeric)
                     {
                         ConsoleColor.Red.WriteConsole("Teacher name format is wrong. Please add again");
                         goto TeacherName;
                     }
-                    if (isCorrectFormatByTeacherName)
+                    if (!isCorrectFormatByTeacherName)
                     {
                         ConsoleColor.Red.WriteConsole("Teacher name format is wrong. Please add again");
                         goto TeacherName;
@@ -218,13 +220,16 @@ namespace CourseApp.Controllers
 		public void Delete()
 		{
             List<Group> groups = _groupservice.GetAll();
+    
             foreach (var group in groups)
             {
                 Console.WriteLine($"Group id:{group.Id} Group name:{group.Name} Group Teacher name:{group.TeacherName}");
             }
 			ConsoleColor.Cyan.WriteConsole("Add Group Id:");
-		    Id: string insertedGroupId = Console.ReadLine();
+            Id: string insertedGroupId = Console.ReadLine();
 			string groupIdStr = insertedGroupId.Trim().ToLower();
+
+
             if (string.IsNullOrWhiteSpace(groupIdStr))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
@@ -232,8 +237,9 @@ namespace CourseApp.Controllers
             }
 			int id;
 			bool isCorrectIdFormat = int.TryParse(groupIdStr, out id);
-            bool isCorrectIdFormatForSymbol = groupIdStr.Any(char.IsSymbol);
-            if (isCorrectIdFormatForSymbol)
+            bool isCorrectIdFormatForSymbol = groupIdStr.All(char.IsDigit);
+
+            if (!isCorrectIdFormatForSymbol)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                 goto Id;
@@ -244,6 +250,7 @@ namespace CourseApp.Controllers
 				try
 				{
 					_groupservice.Delete(id);
+                    _studentService.DeleteAll(id);
 					ConsoleColor.Green.WriteConsole("Data successfully deleted");
 				}
 				catch (Exception ex)
@@ -308,9 +315,9 @@ namespace CourseApp.Controllers
 			}
 			int id;
 			bool isCorrectIdFormat = int.TryParse(idStr, out id);
-            bool isCorrectIdFormatForSymbol = idStr.Any(char.IsSymbol);
+            bool isCorrectIdFormatForSymbol = idStr.All(char.IsDigit);
 
-            if (isCorrectIdFormatForSymbol)
+            if (!isCorrectIdFormatForSymbol)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                 goto Id;
@@ -349,8 +356,8 @@ namespace CourseApp.Controllers
             }
 
             bool isNumeric = teacherName.Any(char.IsDigit);
-            bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
-            if (isCorrectFormatByTeacherName)
+            bool isCorrectFormatByTeacherName = teacherName.All(char.IsLetter);
+            if (!isCorrectFormatByTeacherName)
             {
                 ConsoleColor.Red.WriteConsole("Teacher name format is wrong .Please add again");
                 goto TeacherName;

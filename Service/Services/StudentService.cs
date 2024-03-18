@@ -32,6 +32,14 @@ namespace Service.Services
             if (student is null) throw new NotFoundException(ResponseMessages.DataNotFound);
            _studentRepo.Delete(student);
         }
+        public void DeleteAll(int? id)
+        {
+            if (id is null) throw new ArgumentNullException();
+            List<Student> students = _studentRepo.GetAllWithExpression(m => m.Group.Id == id);
+            if (students is null) throw new NotFoundException(ResponseMessages.DataNotFound);
+            _studentRepo.DeleteAll(id);
+        }
+
 
         public void Edit(Student data)
         {

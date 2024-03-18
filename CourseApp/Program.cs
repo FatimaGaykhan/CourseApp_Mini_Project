@@ -5,12 +5,14 @@ using Service.Services.Helpers.Extensions;
 GroupController groupController = new GroupController();
 StudentController studentController = new StudentController();
 
-GetMenues();
+
 
 
 while (true)
+
 {
-    Operation: string operationStr = Console.ReadLine();
+    GetMenues();
+Operation: string operationStr = Console.ReadLine();
     int operation;
     bool IsCorrectOperationFormat = int.TryParse(operationStr, out operation);
 

@@ -7,6 +7,7 @@ namespace Service.Services.Interfaces
 	{
         void Create(Student data);
         void Delete(int? id);
+        void DeleteAll(int?id);
         void Edit(Student data);
         Student GetById(int? id);
         List<Student> GetAll();
