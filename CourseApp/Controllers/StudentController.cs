@@ -29,6 +29,13 @@ namespace CourseApp.Controllers
                 goto Name;
             }
 			bool isNumericByName = name.Any(char.IsDigit);
+            bool isCorrectFormatByName = name.Any(char.IsSymbol);
+
+            if (isCorrectFormatByName)
+            {
+                ConsoleColor.Red.WriteConsole("Name format is wrong.Please Add again");
+                goto Name;
+            }
 			if (isNumericByName)
 			{
                 ConsoleColor.Red.WriteConsole("Name format is wrong.Please Add again");
@@ -44,6 +51,13 @@ namespace CourseApp.Controllers
                 goto Surname;
             }
             bool isNumericBySurname = surname.Any(char.IsDigit);
+            bool isCorrectFormatBySurname = surname.Any(char.IsSymbol);
+
+            if (isCorrectFormatBySurname)
+            {
+                ConsoleColor.Red.WriteConsole("Surname format is wrong.Please Add again");
+                goto Surname;
+            }
 			if (isNumericBySurname)
 			{
                 ConsoleColor.Red.WriteConsole("Surname format is wrong.Please Add again");
@@ -66,11 +80,20 @@ namespace CourseApp.Controllers
 			}
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
+            bool isCorrectFormatByAgeForSymbol = ageStr.Any(char.IsSymbol);
+
+
+            if (isCorrectFormatByAgeForSymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Age format is wrong.Please Add again");
+                goto Age;
+            }
             if (age < 15 || age > 50)
             {
                 ConsoleColor.Red.WriteConsole("age cannot be less than 15 or more than 50");
                 goto Age;
             }
+
 
             ConsoleColor.Cyan.WriteConsole("Choose student's group Id:");
             List<Group> groups = _groupService.GetAll();
@@ -87,13 +110,23 @@ namespace CourseApp.Controllers
                 goto Id;
             }
             bool idFormat= idStr.Any(char.IsLetter);
+            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
+
+            if (isCorrectIdFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please Add again");
+                goto Id;
+            }
+
             if (idFormat)
             {
                 ConsoleColor.Red.WriteConsole("Id format is wrong.Please Add again");
                 goto Id;
             }
+
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
+
             if (id == 0 || id < 0)
             {
                 ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
@@ -127,13 +160,20 @@ namespace CourseApp.Controllers
                 Console.WriteLine($"Student Id:{student.Id} Student name:{student.Name} Student surname:{student.Surname} Student age:{student.Age} Student group id:{student.Group.Id} Student Group name:{student.Group.Name}");
             }
             Id: string insertedStudentId = Console.ReadLine();
+            string strId = insertedStudentId.Trim();
             if (string.IsNullOrWhiteSpace(insertedStudentId))
             {
                 ConsoleColor.Red.WriteConsole("Input can't be empty.Please add again");
                 goto Id;
             }
             int convertedStudentId;
-            bool isCorrectIdFormat = int.TryParse(insertedStudentId, out convertedStudentId);
+            bool isCorrectIdFormat = int.TryParse(strId, out convertedStudentId);
+            bool isCorrectIdFormatBySymbol = strId.Any(char.IsSymbol);
+            if (isCorrectIdFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
             if (convertedStudentId == 0 || convertedStudentId < 0)
             {
                 ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
@@ -152,11 +192,21 @@ namespace CourseApp.Controllers
                     Name: string insertedName = Console.ReadLine();
                     string name = insertedName.Trim().ToLower();
                     bool isNumericByName = name.Any(char.IsDigit);
+                    bool isCorrectNameFormatBySymbol = name.Any(char.IsSymbol);
+
+                    if (isCorrectNameFormatBySymbol)
+                    {
+                        ConsoleColor.Red.WriteConsole("Name format is wrong.Please add again");
+                        goto Name;
+                    }
                     if (isNumericByName)
                     {
                         ConsoleColor.Red.WriteConsole("Name format is wrong.Please add again");
                         goto Name;
                     }
+
+
+
                     if (student.Name == name)
                     {
                         ConsoleColor.Red.WriteConsole("Can't insert the same name. Please change student's name. To keep old name just insert empty");
@@ -177,11 +227,21 @@ namespace CourseApp.Controllers
                     Surname: string insertedSurname = Console.ReadLine();
                     string surname = insertedSurname.Trim().ToLower();
                     bool isNumericBySurname = surname.Any(char.IsDigit);
+                    bool isCorrectSurnameFormatBySymbol = surname.Any(char.IsSymbol);
+
+
+                    if (isCorrectSurnameFormatBySymbol)
+                    {
+                        ConsoleColor.Red.WriteConsole("Surname format is wrong.Please add again");
+                        goto Surname;
+                    }
                     if (isNumericBySurname)
                     {
                         ConsoleColor.Red.WriteConsole("Surname format is wrong.Please add again");
                         goto Surname;
                     }
+
+
                     if (student.Surname == surname)
                     {
                         ConsoleColor.Red.WriteConsole("Can't insert the same surname. Please change student's surname. To keep old surname just insert empty");
@@ -211,6 +271,15 @@ namespace CourseApp.Controllers
                         goto Age;
                     }
                     bool isCorrectFormatByAge = int.TryParse(newStr, out age);
+                    bool isCorrectAgeFormatBySymbol = newStr.Any(char.IsSymbol);
+
+                    if (isCorrectAgeFormatBySymbol)
+                    {
+                        ConsoleColor.Red.WriteConsole("Age format is wrong.Please add again");
+                        goto Age;
+                    }
+
+
                     if (isCorrectFormatByAge)
                     {
                         if (age < 15||age>50)
@@ -244,7 +313,16 @@ namespace CourseApp.Controllers
                     GroupId: string insertedGroupId = Console.ReadLine();
                     string newGroupId = insertedGroupId.Trim();
                     int groupId;
+
                     bool isCorrectFormatGroupId = int.TryParse(newGroupId, out groupId);
+                    bool isCorrectGroupIdFormatBySymbol = newGroupId.Any(char.IsSymbol);
+
+
+                    if (isCorrectGroupIdFormatBySymbol)
+                    {
+                        ConsoleColor.Red.WriteConsole("Group Id format is wrong .Please add again");
+                        goto GroupId;
+                    }
                     if (groupId == 0 || groupId < 0)
                     {
                         ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
@@ -319,6 +397,14 @@ namespace CourseApp.Controllers
             }
             int id;
             bool IsCorrectIdFormat = int.TryParse(idStr, out id);
+            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
+
+
+            if (isCorrectIdFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
             if (id == 0 || id < 0)
             {
                 ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
@@ -360,8 +446,14 @@ namespace CourseApp.Controllers
                 goto Id;
             }
             int id;
-            bool IsCorrectIdFormat = int.TryParse(idStr, out id);
-            if (IsCorrectIdFormat)
+            bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
+            if (isCorrectIdFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong. Please add again");
+                goto Id;
+            }
+            if (isCorrectIdFormat)
             {
                 try
                 {
@@ -403,6 +495,12 @@ namespace CourseApp.Controllers
             }
             int id;
             bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            bool isCorrectIdFormatBySymbol = idStr.Any(char.IsSymbol);
+            if (isCorrectIdFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
             if (isCorrectIdFormat)
             {
                 try
@@ -439,6 +537,12 @@ namespace CourseApp.Controllers
 
             int age;
             bool isCorrectAgeFormat = int.TryParse(ageStr, out age);
+            bool isCorrectAgeFormatBySymbol = ageStr.Any(char.IsSymbol);
+            if (isCorrectAgeFormatBySymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Age format is wrong . Please add again");
+                goto Age;
+            }
 
             if (age < 15 || age > 50)
             {
@@ -483,6 +587,7 @@ namespace CourseApp.Controllers
             }
             
             bool isNumericText = searchText.Any(char.IsDigit);
+            
             if (!isNumericText)
             {
                 try

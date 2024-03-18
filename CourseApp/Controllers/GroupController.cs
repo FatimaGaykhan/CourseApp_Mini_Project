@@ -49,10 +49,16 @@ namespace CourseApp.Controllers
 				goto TeacherName;	
 			}
             bool isNumeric = teacherName.Any(char.IsDigit);
+            bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
             if (isNumeric)
             {
 				ConsoleColor.Red.WriteConsole("Teacher name format is wrong.Please add again");
 				goto TeacherName;
+            }
+            if (isCorrectFormatByTeacherName)
+            {
+                ConsoleColor.Red.WriteConsole("Teacher name format is wrong.Please add again");
+                goto TeacherName;
             }
             ConsoleColor.Cyan.WriteConsole("Add Room:");
 			Room: string room = Console.ReadLine();
@@ -88,9 +94,15 @@ namespace CourseApp.Controllers
 			}
 			int id;
             bool isCorrectIdFormat = int.TryParse(strId, out id);
+            bool isCorrectIdFormatForSymbol = strId.Any(char.IsSymbol);
             if (id == 0 || id < 0)
             {
                 ConsoleColor.Red.WriteConsole("Id cannot be eqaul to 0 or negative.Please add again");
+                goto Id;
+            }
+            if (isCorrectIdFormatForSymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
                 goto Id;
             }
             if (isCorrectIdFormat)
@@ -123,7 +135,13 @@ namespace CourseApp.Controllers
                     TeacherName: string insertedTeacherName = Console.ReadLine();
                     string teacherName = insertedTeacherName.Trim().ToLower();
                     bool isNumeric = teacherName.Any(char.IsDigit);
+                    bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
                     if (isNumeric)
+                    {
+                        ConsoleColor.Red.WriteConsole("Teacher name format is wrong. Please add again");
+                        goto TeacherName;
+                    }
+                    if (isCorrectFormatByTeacherName)
                     {
                         ConsoleColor.Red.WriteConsole("Teacher name format is wrong. Please add again");
                         goto TeacherName;
@@ -214,7 +232,13 @@ namespace CourseApp.Controllers
             }
 			int id;
 			bool isCorrectIdFormat = int.TryParse(groupIdStr, out id);
-           
+            bool isCorrectIdFormatForSymbol = groupIdStr.Any(char.IsSymbol);
+            if (isCorrectIdFormatForSymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
+
             if (isCorrectIdFormat)
 			{
 				try
@@ -284,8 +308,13 @@ namespace CourseApp.Controllers
 			}
 			int id;
 			bool isCorrectIdFormat = int.TryParse(idStr, out id);
+            bool isCorrectIdFormatForSymbol = idStr.Any(char.IsSymbol);
 
-           
+            if (isCorrectIdFormatForSymbol)
+            {
+                ConsoleColor.Red.WriteConsole("Id format is wrong.Please add again");
+                goto Id;
+            }
             if (isCorrectIdFormat)
 			{
 				try
@@ -320,6 +349,12 @@ namespace CourseApp.Controllers
             }
 
             bool isNumeric = teacherName.Any(char.IsDigit);
+            bool isCorrectFormatByTeacherName = teacherName.Any(char.IsSymbol);
+            if (isCorrectFormatByTeacherName)
+            {
+                ConsoleColor.Red.WriteConsole("Teacher name format is wrong .Please add again");
+                goto TeacherName;
+            }
 			if (!isNumeric)
 			{
                 try

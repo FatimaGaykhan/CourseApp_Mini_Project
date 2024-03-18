@@ -6,7 +6,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.ItemProperties.CourseApp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CourseApp/Controllers/GroupController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CourseApp/Controllers/StudentController.cs">
     <Files>
       <File FileName="Domain/Models/Student.cs" />
       <File FileName="CourseApp/Program.cs" />
@@ -23,8 +23,8 @@
       <File FileName="Service/Services/Interfaces/IStudentService.cs" />
       <File FileName="Service/Services/StudentService.cs" />
       <File FileName="Service/Services/Helpers/Extensions/ConsoleExtension.cs" />
-      <File FileName="CourseApp/Controllers/GroupController.cs" Line="270" Column="29" />
-      <File FileName="CourseApp/Controllers/StudentController.cs" Line="445" Column="49" />
+      <File FileName="CourseApp/Controllers/GroupController.cs" Line="340" Column="38" />
+      <File FileName="CourseApp/Controllers/StudentController.cs" Line="578" Column="44" />
       <File FileName="Service/Services/Helpers/Enums/OperationType.cs" />
       <File FileName="Service/Services/Helpers/Exceptions/NotFoundException.cs" />
       <File FileName="Service/Services/Helpers/Exceptions/EmptyException.cs" />
@@ -36,7 +36,7 @@
           <Node name="CourseApp" expanded="True">
             <Node name="CourseApp" expanded="True">
               <Node name="Controllers" expanded="True">
-                <Node name="GroupController.cs" selected="True" />
+                <Node name="StudentController.cs" selected="True" />
               </Node>
             </Node>
             <Node name="Domain" expanded="True">
